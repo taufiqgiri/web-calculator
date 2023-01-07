@@ -1,0 +1,97 @@
+[
+  {
+    "symbol": "C",
+    "backgroundColor": "black",
+    "box": "single"
+  },
+  {
+    "symbol": "+/-",
+    "backgroundColor": "black",
+    "box": "single"
+  },
+  {
+    "symbol": "%",
+    "backgroundColor": "black",
+    "box": "single"
+  },
+  {
+    "symbol": "/",
+    "backgroundColor": "yellow",
+    "box": "single"
+  },
+  {
+    "symbol": "7",
+    "backgroundColor": "gray",
+    "box": "single"
+  },
+  {
+    "symbol": "8",
+    "backgroundColor": "gray",
+    "box": "single"
+  },
+  {
+    "symbol": "9",
+    "backgroundColor": "gray",
+    "box": "single"
+  },
+  {
+    "symbol": "x",
+    "backgroundColor": "yellow",
+    "box": "single"
+  },
+  {
+    "symbol": "4",
+    "backgroundColor": "gray",
+    "box": "single"
+  },
+  {
+    "symbol": "5",
+    "backgroundColor": "gray",
+    "box": "single"
+  },
+  {
+    "symbol": "6",
+    "backgroundColor": "gray",
+    "box": "single"
+  },
+  {
+    "symbol": "-",
+    "backgroundColor": "yellow",
+    "box": "single"
+  },
+  {
+    "symbol": "1",
+    "backgroundColor": "gray",
+    "box": "single"
+  },
+  {
+    "symbol": "2",
+    "backgroundColor": "gray",
+    "box": "single"
+  },
+  {
+    "symbol": "3",
+    "backgroundColor": "gray",
+    "box": "single"
+  },
+  {
+    "symbol": "+",
+    "backgroundColor": "yellow",
+    "box": "single"
+  },
+  {
+    "symbol": "0",
+    "backgroundColor": "gray",
+    "box": "double"
+  },
+  {
+    "symbol": ",",
+    "backgroundColor": "gray",
+    "box": "single"
+  },
+  {
+    "symbol": "=",
+    "backgroundColor": "yellow",
+    "box": "single"
+  }
+]

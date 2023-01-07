@@ -1,8 +1,21 @@
-.w-200 {
+.w-300 {
   width: 300px;
 }
 
-.s-100 {
+.h-75 {
+  height: 75px;
+}
+
+.s-75 {
   width: 75px;
   height: 75px;
+}
+
+.s-150 {
+  width: 150px;
+  height: 75px;
+}
+
+.key-pad {
+  cursor: pointer;
 }
