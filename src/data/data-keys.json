@@ -2,96 +2,121 @@
   {
     "symbol": "C",
     "backgroundColor": "black",
-    "box": "single"
+    "box": "single",
+    "type": "reset"
   },
   {
     "symbol": "+/-",
     "backgroundColor": "black",
-    "box": "single"
+    "box": "single",
+    "type": "operator"
   },
   {
     "symbol": "%",
     "backgroundColor": "black",
-    "box": "single"
+    "box": "single",
+    "type": "operator"
   },
   {
-    "symbol": "/",
+    "symbol": "backspace",
     "backgroundColor": "yellow",
-    "box": "single"
+    "box": "single",
+    "type": "operator"
   },
   {
     "symbol": "7",
     "backgroundColor": "gray",
-    "box": "single"
+    "box": "single",
+    "type": "number"
   },
   {
     "symbol": "8",
     "backgroundColor": "gray",
-    "box": "single"
+    "box": "single",
+    "type": "number"
   },
   {
     "symbol": "9",
     "backgroundColor": "gray",
-    "box": "single"
+    "box": "single",
+    "type": "number"
   },
   {
     "symbol": "x",
     "backgroundColor": "yellow",
-    "box": "single"
+    "box": "single",
+    "type": "operator"
   },
   {
     "symbol": "4",
     "backgroundColor": "gray",
-    "box": "single"
+    "box": "single",
+    "type": "number"
   },
   {
     "symbol": "5",
     "backgroundColor": "gray",
-    "box": "single"
+    "box": "single",
+    "type": "number"
   },
   {
     "symbol": "6",
     "backgroundColor": "gray",
-    "box": "single"
+    "box": "single",
+    "type": "number"
   },
   {
-    "symbol": "-",
+    "symbol": "/",
     "backgroundColor": "yellow",
-    "box": "single"
+    "box": "single",
+    "type": "operator"
   },
   {
     "symbol": "1",
     "backgroundColor": "gray",
-    "box": "single"
+    "box": "single",
+    "type": "number"
   },
   {
     "symbol": "2",
     "backgroundColor": "gray",
-    "box": "single"
+    "box": "single",
+    "type": "number"
   },
   {
     "symbol": "3",
     "backgroundColor": "gray",
-    "box": "single"
+    "box": "single",
+    "type": "number"
   },
   {
     "symbol": "+",
     "backgroundColor": "yellow",
-    "box": "single"
+    "box": "single",
+    "type": "operator"
   },
   {
     "symbol": "0",
     "backgroundColor": "gray",
-    "box": "double"
+    "box": "single",
+    "type": "number"
   },
   {
     "symbol": ",",
     "backgroundColor": "gray",
-    "box": "single"
+    "box": "single",
+    "type": "operator"
   },
   {
     "symbol": "=",
+    "backgroundColor": "gray",
+    "box": "single",
+    "type": "operator"
+  },
+  {
+    "symbol": "-",
     "backgroundColor": "yellow",
-    "box": "single"
+    "box": "single",
+    "type": "operator"
   }
 ]
