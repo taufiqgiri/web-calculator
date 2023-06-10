@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import './index.css';
 import keysData from '../data/data-keys.json';
 import { OutputField, CalculatorPad } from "../atoms";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function CalculatorPage() {
   const [firstValue, setFirstValue] = useState("")
   const [secondValue, setSecondValue] = useState("")
   const [operatorSelected, setOperatorSelected] = useState("")
+  const [isResultShown, setResultShown] = useState(false)
 
   function clickNumPad(dataKey) {
     if (dataKey.type === "number") {
@@ -14,35 +17,57 @@ export default function CalculatorPage() {
     } else if (dataKey.type === "reset") {
       resetCalculator()
     } else {
-      switch (dataKey.symbol) {
-        case "backspace":
-          return deleteCharacterValue()
-        case "+/-":
-          return addPlusMinusSymbol()
-        case "%":
-          return addPercent()
-        case "=":
-          return getResult()
-        case ",":
-          return addCharacterValue(".")
-        default:
-          return addOperator(dataKey.symbol)
+      if (isResultShown) {
+        setResultShown(false)
+        setFirstValue("0")
+      } else {
+        if (firstValue.includes("e") || firstValue.length > 12) {
+          toast("Sorry, cannot calculate number with more than 12 digits")
+        } else {
+          switch (dataKey.symbol) {
+            case "backspace":
+              return deleteCharacterValue()
+            case "+/-":
+              return addPlusMinusSymbol()
+            case "%":
+              return addPercent()
+            case "=":
+              return getResult()
+            case ",":
+              return addCharacterValue(".")
+            default:
+              return addOperator(dataKey.symbol)
+          }
+        }
       }
     }
   }
 
   function addCharacterValue(character) {
     if (secondValue || (firstValue && operatorSelected)) {
-      if (secondValue !== "0") {
-        setSecondValue(secondValue + character)
+      if (secondValue.length === 12) {
+        toast("You can only input a maximum of 12 digits")
       } else {
-        setSecondValue(character)
+        if (secondValue !== "0") {
+          setSecondValue(secondValue + character)
+        } else {
+          setSecondValue(character)
+        }
       }
     } else {
-      if (firstValue !== "0" && firstValue) {
-        setFirstValue(firstValue + character)
-      } else {
+      if (isResultShown) {
+        setResultShown(false)
         setFirstValue(character)
+      } else {
+        if (firstValue.length === 12) {
+          toast("You can only input a maximum of 12 digits")
+        } else {
+          if (firstValue !== "0" && firstValue) {
+            setFirstValue(firstValue + character)
+          } else {
+            setFirstValue(character)
+          }
+        }
       }
     }
   }
@@ -102,19 +127,53 @@ export default function CalculatorPage() {
       switch (operatorSelected) {
         case "x":
           result = String(Number(firstValue) * Number(secondValue))
-          setFirstValue(result)
+          if (result.length <= 12) {
+            setFirstValue(result)
+          } else {
+            let divider = "1"
+            for (let i = 0; i < result.length - 3; i++) {
+              divider += "0"
+            }
+            let decimalValue = String(Math.round(Number(result) / Number(divider)) / 100)
+            setFirstValue(decimalValue + "e" + (result.length - 1))
+          }
           setSecondValue("")
           setOperatorSelected("")
           break
         case "/":
           result = String(Number(firstValue) / Number(secondValue))
-          setFirstValue(result)
+          if (result.length <= 13 && result.includes(".")) {
+            setFirstValue(result)
+          } else {
+            let splittedNUmbers = result.split(".")
+            if (splittedNUmbers[1] > 4) {
+              if (result.includes("e")) {
+                let splittedDecimalNumbers = result.split("e")
+                let prefixSubstring = splittedDecimalNumbers[0].substring(0, 4)
+                setFirstValue(prefixSubstring + "e" + splittedDecimalNumbers[1])
+              } else {
+                let newNumber = String(Math.round(Number(result) * 1000000000000) / 1000000000000)
+                setFirstValue(newNumber)
+              }
+            } else {
+              setFirstValue(result)
+            }
+          }
           setSecondValue("")
           setOperatorSelected("")
           break
         case "+":
           result = String(Number(firstValue) + Number(secondValue))
-          setFirstValue(result)
+          if (result.length <= 12) {
+            setFirstValue(result)
+          } else {
+            let divider = "1"
+            for (let i = 0; i < result.length - 3; i++) {
+              divider += "0"
+            }
+            let decimalValue = String(Math.round(Number(result) / Number(divider)) / 100)
+            setFirstValue(decimalValue + "e" + (result.length - 1))
+          }
           setSecondValue("")
           setOperatorSelected("")
           break
@@ -127,11 +186,20 @@ export default function CalculatorPage() {
         default:
           break
       }
+      setResultShown(true)
     }
   }
 
   return (
     <div className="pt-5 flex flex-col justify-center items-center">
+      <ToastContainer 
+        position="top-center"
+        autoClose={1500}
+        hideProgressBar={true}
+        closeOnClick={true}
+        pauseOnHover={false}
+        theme="dark"
+      />
       <div className="p-5 border border-black mt-5 flex flex-col justify-center items-center rounded">
         <div className="w-300 flex flex-row justify-start items-start">
           <p className="font-sans text-2xl font-bold">
@@ -144,9 +212,10 @@ export default function CalculatorPage() {
         />
         <div className="w-300 flex flex-row flex-wrap mt-3">
           {
-            keysData.map((data) => {
+            keysData.map((data, index) => {
               return (
                 <CalculatorPad
+                  key={index}
                   data={data}
                   onClick={() => clickNumPad(data)}
                 />
